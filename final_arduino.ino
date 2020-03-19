@@ -2,13 +2,20 @@
 #include <Servo.h>
 #include <HardwareSerial.h>
  
-const int servoPin = 9;
+const int servoPin1 = 9;
+const int servoPin2 = 10;
  
-Servo servo;
+Servo servo1;
+Servo servo2;
+
+int lastX = 0;
+int lastY = 0;
  
 void setup() {
   Serial.begin(9600);
-  servo.attach(servoPin);
+  servo1.attach(servoPin1);
+  servo2.attach(servoPin2);
+  servo3.attach(servoPin3);
 }
  
  
@@ -16,30 +23,38 @@ void loop() {
   char str[2];
   if(Serial.available() > 0) {
     char data = Serial.read();
-    char str[2];
-    str[0] = data;
-    str[1] = '\0';
+    int dist = Serial.read();
     Serial.print(data);
-      if (str == "f\0") {
+      if (str == "f") {
         return;
     }
   }
- 
-  // scan from 30 to 150 degrees
-  int angle = 0;
-  for(angle = 30; angle <= 150; angle++) {                                  
-    servo.write(angle);              
-    delay(60);
-    if (str == "f\0") {
-        return;
-    }              
-  }
-  // now scan back from 150 to 30 degrees
-  for(angle = 150; angle >= 30; angle--) {                                
-    servo.write(angle);          
-    delay(60);
-    if (str == "f\0") {
-        return;
-    }    
+
+  
+
+  if (data == 'n') {
+    for (int i = last; i < dist; i++) {
+      servo1.write(angle);
+      delay(60);
+    }
+    lastY = dist;
+  } else if (data == 's') {
+    for (int i = dist; i >= last; i--) {
+      servo1.write(angle);
+      delay(60);
+    }
+    lastY = dist;
+  } else if (data == 'e') {
+    for (int i = last; i < dist; i++) {
+      servo2.write(angle);
+      delay(60);
+    }
+    lastX = dist;
+  } else if (data == 'w') {
+    for (int i = dist; i >= last; i--) {
+      servo2.write(angle);
+      delay(60);
+    }
+    lastX = dist;
   }
 }
