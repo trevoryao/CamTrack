@@ -1,24 +1,25 @@
 # CamTrack
 
-> Ball in, ball out
+> Sophisticated Mechanical Object Tracking
 
 ## Introduction
 
-Being the huge soccer fans that we are, we decided to try and improve the footage that we watch on a daily basis. We decided to create a tool that could automatically track a ball on a soccer field.
+Inspired by the manual operation of cameras on football pitches, our team set out with a goal to modernize the camera operation through singular object tracking for instant replays and multiple object tracking for the regular field of play.
 
 ## Details
 
-We used a raspberry pi camera and open cv to detect the ball. We used Serial reading and writing to communicate between our python code and the raspberry pi motor. The motor then turns in response and rotates the camera if needed. Thus, we have a camera that will automatically stop when the ball is in view which is useful.
+During initial prototyping, out team used a PiCam and a self built platform stand to detect objects with the aid of the OpenCV API. The Raspberry Pi and Arduino motors coordinate movement through Serial Read/Writing to follow the object. Three motors are used to give the camera a full field of vision and rotation.
 
-## Applications 
+## Future Applications 
 
-Another area that our project could be implemented in is security and the tracking of specific objects/people.
+Other possible applications include home security in tracking specific targeted people. 
 
 ## Future Plans
-We want to incorporate multiple cameras and automatic switching between cameras based on which camera gives the best view of the ball/object.
+
+After the initial rapid prototyping phase, the next phase is incorporating multiple cameras connected wirelessly to a central server, where machine learning will be used to display the best view.
 
 ## Built With
-- python
+- Python
 - OpenCV
 - Raspberry Pi
 - Arduino
